@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloudflare Postgres Demo</title>
+  </head>
+  <body>
+    Cars earlier than <input id="filter" type="number" value="2008" />
+    <button id="query">Query</button>
+    <ul id="results"></ul>
+    <script>
+      const filter = document.getElementById("filter");
+      const results = document.getElementById("results");
+      const button = document.getElementById("query");
+
+      const doQuery = async () => {
+        const requestUrl = new URL("/query", document.location);
+        requestUrl.searchParams.append("filter", filter.value);
+        const response = await fetch(requestUrl);
+        const rows = await response.json();
+        console.log(rows);
+        results.innerHTML = "";
+        for (const row of rows) {
+          const li = document.createElement("li");
+          li.innerText = JSON.stringify(row);
+          results.appendChild(li);
+        }
+      };
+
+      button.addEventListener("click", doQuery);
+      doQuery();
+    </script>
+  </body>
+</html>
