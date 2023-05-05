@@ -26,7 +26,7 @@ export default {
     var client = new Client(env.DB);
     await client.connect();
     const result = await client.query({
-      text: "SELECT * from cars WHERE YEAR < $1",
+      text: "SELECT * from cars WHERE car_make = $1",
       values: [params.get("filter")],
     });
     console.log(JSON.stringify(result.rows));
