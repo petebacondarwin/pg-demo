@@ -1,4 +1,4 @@
-import { Client } from "@cloudflare/pg";
+import { Client } from "pg";
 import html from "./index.html";
 
 export interface Env {
