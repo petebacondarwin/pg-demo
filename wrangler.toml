@@ -1,5 +1,4 @@
 name = "pg-demo"
 main = "src/index.ts"
-compatibility_date = "2023-04-04"
-compatibility_flags = ["tcp_sockets_support"]
+compatibility_date = "2023-05-12"
 node_compat = true
